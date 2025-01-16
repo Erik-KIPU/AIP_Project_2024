@@ -22,7 +22,10 @@ app.use(session({
   saveUninitialized: true,
   store: MongoStore.create({mongoUrl:'mongodb://localhost/testMongoose2024'})
 }))
-
+app.use(function(req,res,next){
+  req.session.counter = req.session.counter + 1 || 1
+  next()
+  })
 // view engine setup
 app.engine('ejs',require('ejs-locals'));
 app.set('views', path.join(__dirname, 'views'));
