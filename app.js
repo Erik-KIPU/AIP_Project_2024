@@ -7,10 +7,21 @@ var mongoose = require('mongoose')
 mongoose.connect('mongodb://localhost/testMongoose2024')
 var session = require("express-session")
 
+
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var sportsRouter = require('./routes/sports');
-var app = express();
+var app = express();''
+var MongoStore = require('connect-mongo');
+app.use(session({
+  secret: "ThreeSports",
+  cookie:{maxAge:60*1000},
+  proxy: true,
+  resave: true,
+  saveUninitialized: true,
+  store: MongoStore.create({mongoUrl:'mongodb://localhost/testMongoose2024'})
+}))
 
 // view engine setup
 app.engine('ejs',require('ejs-locals'));
