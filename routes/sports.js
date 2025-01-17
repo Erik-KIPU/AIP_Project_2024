@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var Sport = require('../models/sport').Sport; // Убедитесь, что экспорт модели правильный
+var checkAuth = require("../middlewares/checkAuth.js");
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -8,7 +9,8 @@ router.get('/', function(req, res, next) {
 });
 
 /* Страница фильма */
-router.get('/:nick', async function(req, res, next) {
+
+router.get("/:nick", checkAuth, async function(req, res, next) {
   try {
     // Поиск фильма по уникальному полю `nick`
     console.log("Ищу спорт с ником:", req.params.nick);
