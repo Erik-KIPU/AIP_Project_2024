@@ -5,7 +5,7 @@ var checkAuth = require("../middlewares/checkAuth.js");
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  res.send('Новый маршрутизатор, для маршрутов, начинающихся с films');
+  res.send('Новый маршрутизатор, для маршрутов, начинающихся со sports');
 });
 
 /* Страница фильма */
